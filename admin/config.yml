@@ -2,6 +2,9 @@ backend:
   name: github
   repo: rbikar/podjavorican-web
   branch: master
+  auth_scope: repo
+  auth_endpoint: "authorize"
+  oauth_client_id: Ov23liYX7dYWWTlYP5H2
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
