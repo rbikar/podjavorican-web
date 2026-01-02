@@ -4,3 +4,5 @@ _site
 .jekyll-metadata
 vendor
 __pycache__
+flask-app/__pycache__
+public/*
