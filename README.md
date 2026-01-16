@@ -1,24 +1,6 @@
 # podjavorican-web
 
-## intro
-
-Hybrid web-site for folklore group Podjavorican Telc.
-Powered by Jekyll and flask.
-
-## how to run local dev env
-
-### jekyll pre-reqs
-
-```bash
-ruby -v
-gem -v
-gcc -v
-g++ -v
-make -v
-
-gem update
-gem install jekyll bundler
-```
+TODO
 
 ### run app
 
