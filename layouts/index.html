@@ -1,0 +1,81 @@
+{{ define "main" }}
+<div class="min-vh-100 bg-near-white">
+
+  <!-- Navigation -->
+  <nav class="bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
+    <div class="pa3 ph4-l flex items-center justify-between">
+      <h1 class="f4 fw7 ma0 dark-gray">{{ .Site.Title }}</h1>
+      <div class="flex items-center">
+        <a href="#about" class="link dark-gray dim f6 mh2">O souboru</a>
+        <a href="#dances" class="link dark-gray dim f6 mh2">Pasma</a>
+        <a href="#music" class="link dark-gray dim f6 mh2">Clanky</a>
+        <a href="#events" class="link dark-gray dim f6 mh2">Vystoupeni</a>
+        <a href="#gallery" class="link dark-gray dim f6 mh2">Galerie</a>
+        <a href="#contact" class="link dark-gray dim f6 mh2">Kontakt</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  {{ with .Params.hero }}
+  <section class="min-vh-100 flex items-center justify-center relative overflow-hidden bg-dark-red" id="top">
+    <div class="relative tc ph4 white">
+      <div class="dib ba b--white-30 br-pill ph3 pv2 mb4 bg-white-20">
+        <span class="f6">{{ .badge }}</span>
+      </div>
+      <h1 class="f-headline-l f1 fw9 lh-solid mb3">
+        {{ $.Title }}<br />
+        <span class="gold"> {{ .subtitle }}</span>
+      </h1>
+      <p class="f4 f3-l lh-copy mw6 center mb4 white-90">
+        {{ $.Description }}
+      </p>
+      <div class="flex flex-column flex-row-ns items-center justify-center">
+        <a href="{{ .primary_cta_href }}" class="link dib ph4 pv3 br3 bg-white dark-red fw6 mh2">
+          {{ .primary_cta_text }}
+        </a>
+        <a href="{{ .secondary_cta_href }}" class="link dib ph4 pv3 br3 ba b--white white fw6 mh2">
+          {{ .secondary_cta_text }}
+        </a>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+ <!-- Contact (static, or use .Params.contact) -->
+  {{ with .Params.contact }}
+ <section id="contact" class="pv5 ph4 ph5-l">
+    <div class="mw7 center">
+      <div class="tc mb5">
+        <h2 class="f2 f1-l fw9 lh-title mb3 dark-gray">Kontakt</h2>
+        <p class="f4 lh-copy measure center gray">
+          Have questions or want to join our group? We would love to hear from you.
+        </p>
+      </div>
+      <div class="flex flex-wrap nl3 nr3 mb4">
+        <div class="w-100 w-third-l pa3">
+          <div class="tc pa4 ba b--black-10 br3 bg-white">
+            <h3 class="f5 fw7 mb2 dark-gray">Email</h3>
+            <a href="mailto:{{ .email }}" class="link blue dim">
+              {{ .email | safeHTML }}
+            </a>
+          </div>
+        </div>
+        <div class="w-100 w-third-l pa3">
+          <div class="tc pa4 ba b--black-10 br3 bg-white">
+            <h3 class="f5 fw7 mb2 dark-gray">Phone</h3>
+            <a href="tel:{{ .phone }}" class="link blue dim">
+              {{ .phone | safeHTML }}
+            </a>
+          </div>
+        </div>
+        <div class="w-100 w-third-l pa3">
+          <div class="tc pa4 ba b--black-10 br3 bg-white">
+            <h3 class="f5 fw7 mb2 dark-gray">Adresa</h3>
+            <p class="f6 gray ma0">{{ .address | safeHTML }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,9 @@
+baseURL = 'https://www.podjavorican.cz/'
+languageCode = 'cs-cz'
+title = 'Podjavořičan Telč'
+theme = 'ananke'
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  mood = "moods"
