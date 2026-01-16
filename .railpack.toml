@@ -1,0 +1,8 @@
+[build]
+  language = "hugo"
+
+[phases.build]
+  cmds = [
+    "hugo version",  # verify
+    "hugo --gc --minify --baseURL ${RAILWAY_STATIC_URL:-/}"
+  ]
