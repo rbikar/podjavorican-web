@@ -28,8 +28,8 @@ jobs:
           ls -la public/
           test -f public/index.html && echo "OK" || echo "EMPTY!"
 
-      - name: Deploy
-        uses: bervProject/railway-deploy@v1
-        with:
-          railwayToken: ${{ secrets.RAILWAY_TOKEN }}
-          serviceId: ${{ secrets.RAILWAY_SERVICE_ID }}
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          railway up --service ${{ secrets.RAILWAY_SERVICE_ID }} --environment production
