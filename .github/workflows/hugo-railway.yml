@@ -23,11 +23,13 @@ jobs:
       - name: Build Hugo site
         run: hugo --gc --minify --baseURL "${{ secrets.RAILWAY_BASE_URL || '/' }}"
 
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy to Railway
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Debug public/
         run: |
-          railway up --service ${{ secrets.RAILWAY_SERVICE_ID }} --environment production
+          ls -la public/
+          test -f public/index.html && echo "OK" || echo "EMPTY!"
+
+      - name: Deploy
+        uses: bervProject/railway-deploy@v1
+        with:
+          railwayToken: ${{ secrets.RAILWAY_TOKEN }}
+          serviceId: ${{ secrets.RAILWAY_SERVICE_ID }}
