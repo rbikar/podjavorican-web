@@ -12,6 +12,7 @@
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;
+              background-attachment: fixed;
             {{ else }}
               background: linear-gradient(-45deg, #091a4b, #ff2549, #14b8a6);
               background-size: 400% 400%;
@@ -35,6 +36,12 @@
         background-size: 400% 400%;
         animation: heroGradient 18s ease infinite;
         z-index: 0;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          background-attachment: scroll;
+        }
       }
       
       /* SINGLE BIG ORB (left) */
