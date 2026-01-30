@@ -17,7 +17,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.154.5'      # pin your version
+          hugo-version: '0.152.2'      # pin your version
           extended: true
 
       - name: Build Hugo site
