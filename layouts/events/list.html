@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="min-vh-100 bg-near-white">
+  {{ partial "site-header.html" . }}
+  
+  <div class="pa4 pa5-l">
+    <!-- Back link + Header -->
+    <div class="mb5">
+      <a href="/" class="link blue dim b db mb3">← {{ i18n "back_to_home" }}</a>
+      <h1 class="f5 fw9 lh-title mt3 mb3 dark-gray">{{ .Title | default "Udalosti" }}</h1>
+      <p class="f4 lh-copy measure-wide gray">
+        {{ with .Content }}{{ . }}{{ else }}Join us at our upcoming events and experience the vibrant tradition of folk culture.{{ end }}
+      </p>
+    </div>
+
+    <!-- Events Grid -->
+    <div class="flex flex-wrap nl3 nr3">
+     
+      {{ $events := sort .RegularPages  "Params.date_start" "asc" }}
+      {{ range $events }}
+        {{ partial "event-card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}

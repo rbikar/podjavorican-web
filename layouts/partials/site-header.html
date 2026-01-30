@@ -1,0 +1,19 @@
+
+
+
+<nav class="bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
+    <div class="pa3 ph4-l flex items-center justify-between">
+      <h1 class="f4 fw7 ma0 dark-gray">
+        <a href="{{ "/" | relURL }}" class="link dark-gray dim">
+          {{ .Site.Title }}
+        </a>
+      </h1>
+      <div class="flex items-center">
+        {{ range .Site.Menus.main }}
+          <a href="{{  .URL | relURL }}" class="link dark-gray dim f6 mh2">
+            {{ .Name }}
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </nav>

@@ -1,9 +1,48 @@
 baseURL = 'https://www.podjavorican.cz/'
-languageCode = 'cs-cz'
+languageCode = 'cs-CZ'
+defaultContentLanguage = 'cs'
 title = 'Podjavořičan Telč'
 theme = 'ananke'
-
+[params]
+  custom_css = ["css/custom.css"]
+  dateFormat = "2. března 2006"  # Czech
 [taxonomies]
   tag = "tags"
   category = "categories"
   mood = "moods"
+
+[menu]
+  [[menu.main]]
+    name = "Aktuality"
+    url  = "#news"
+    weight = 10
+
+  [[menu.main]]
+    name = "O souboru"
+    url  = "#about"
+    weight = 20
+
+  [[menu.main]]
+    name = "Vystoupení"
+    url  = "#events"
+    weight = 30
+
+  [[menu.main]]
+    name = "Pásma"
+    url  = "#dances"
+    weight = 40
+
+  [[menu.main]]
+    name = "Články"
+    url  = "#articles"
+    weight = 50
+
+  [[menu.main]]
+    name = "Galerie"
+    url  = "#gallery"
+    weight = 60
+
+  [[menu.main]]
+    name = "Kontakt"
+    url  = "#contact"
+    weight = 70
