@@ -12,10 +12,10 @@ theme = 'ananke'
   mood = "moods"
 
 [menu]
-  [[menu.main]]
-    name = "Aktuality"
-    url  = "#news"
-    weight = 10
+ # [[menu.main]]
+ #   name = "Aktuality"
+ #   url  = "#news"
+ #   weight = 10
 
   [[menu.main]]
     name = "O souboru"
@@ -27,20 +27,20 @@ theme = 'ananke'
     url  = "#events"
     weight = 30
 
-  [[menu.main]]
-    name = "Pásma"
-    url  = "#dances"
-    weight = 40
+#  [[menu.main]]
+#    name = "Pásma"
+#    url  = "#dances"
+#    weight = 40
 
-  [[menu.main]]
-    name = "Články"
-    url  = "#articles"
-    weight = 50
+#  [[menu.main]]
+#    name = "Články"
+#    url  = "#articles"
+#    weight = 50
 
-  [[menu.main]]
-    name = "Galerie"
-    url  = "#gallery"
-    weight = 60
+#  [[menu.main]]
+#    name = "Galerie"
+#    url  = "#gallery"
+#    weight = 60
 
   [[menu.main]]
     name = "Kontakt"
