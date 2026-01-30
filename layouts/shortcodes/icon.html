@@ -1,0 +1,7 @@
+{{ $name := .Get 0 }}
+{{ $class := (.Get 1).class | default "currentColor" }}
+{{ $size := (.Get 1).size | default "24" | printf "%s" }}
+
+<svg class="w-{{$size}} h-{{$size}}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+  {{ partial (printf "icon/%s.svg" $name) . }}
+</svg>

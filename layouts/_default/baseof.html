@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+  <head>
+    {{ partial "site-style.html" . }} <!-- from Ananke -->
+  </head>
+  <body class="ma0 pa0">
+    {{ partial "site-header.html" . }}   <!-- reusable header -->
+    {{ block "main" . }}{{ end }}
+    {{ partial "site-footer.html" . }}   <!-- footer -->
+  </body>
+</html>

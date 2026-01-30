@@ -1,46 +1,173 @@
+
 {{ define "main" }}
 <div class="min-vh-100 bg-near-white">
 
-  <!-- Navigation -->
-  <nav class="bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
-    <div class="pa3 ph4-l flex items-center justify-between">
-      <h1 class="f4 fw7 ma0 dark-gray">{{ .Site.Title }}</h1>
-      <div class="flex items-center">
-        <a href="#about" class="link dark-gray dim f6 mh2">O souboru</a>
-        <a href="#dances" class="link dark-gray dim f6 mh2">Pasma</a>
-        <a href="#music" class="link dark-gray dim f6 mh2">Clanky</a>
-        <a href="#events" class="link dark-gray dim f6 mh2">Vystoupeni</a>
-        <a href="#gallery" class="link dark-gray dim f6 mh2">Galerie</a>
-        <a href="#contact" class="link dark-gray dim f6 mh2">Kontakt</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
   {{ with .Params.hero }}
-  <section class="min-vh-100 flex items-center justify-center relative overflow-hidden bg-dark-red" id="top">
-    <div class="relative tc ph4 white">
-      <div class="dib ba b--white-30 br-pill ph3 pv2 mb4 bg-white-20">
-        <span class="f6">{{ .badge }}</span>
+  <section class="hero-section min-vh-100 flex items-center justify-center relative overflow-hidden" 
+           id="top" 
+           style="
+             background: linear-gradient(-45deg, #091a4b, #ff2549, #14b8a6);
+             background-size: 400% 400%;
+             animation: heroGradient 18s ease infinite;
+           ">
+  
+    <style>
+      /* 3-COLOR SLOWER GRADIENT */
+      @keyframes heroGradient {
+        0% { background-position: 0% 50%; }
+        33% { background-position: 100% 0%; }
+        66% { background-position: 0% 100%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      /* SINGLE BIG ORB (left) */
+      @keyframes bigOrbFloat {
+        0%,100% { 
+          transform: translateY(0) translateX(0) scale(1); 
+        }
+        33% { 
+          transform: translateY(-30px) translateX(15px) scale(1.1); 
+        }
+        66% { 
+          transform: translateY(-15px) translateX(-10px) scale(1.05); 
+        }
+      }
+      
+      .hero-big-orb { 
+        position: absolute; top: 20%; left: 5%; 
+        width: **10rem**; height: **10rem**;  /* ← HUGE */
+        background: radial-gradient(circle at 30% 30%, #14b8a6, #00d4ff, transparent);
+        border-radius: 9999px; 
+        filter: blur(2rem) brightness(1.2); 
+        animation: bigOrbFloat **20s** ease-in-out infinite;  /* ← SLOWER */
+        z-index: 0; 
+      }
+      
+      /* Content animations unchanged */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hero-fade-up { animation: fadeInUp 1.2s ease-out forwards; opacity: 0; }
+      .hero-fade-up.delay-200 { animation-delay: 0.2s; }
+      .hero-fade-up.delay-400 { animation-delay: 0.4s; }
+      .hero-lift { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+      .hero-lift:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    </style>
+  
+    <!-- Dim overlay -->
+    <div class="absolute inset-0 bg-black-40"></div>
+    
+    <!-- SINGLE BIG TURQUOISE ORB (left) -->
+    <div class="hero-big-orb"></div>
+    
+    <!-- Content (unchanged) -->
+    <div class="relative z-2 tc ph4 white mw7">
+      <div class="dib ba b--white-30 br-pill ph3 pv2 mb4 bg-white-20 hero-fade-up">
+        {{ .badge }}
       </div>
-      <h1 class="f-headline-l f1 fw9 lh-solid mb3">
-        {{ $.Title }}<br />
-        <span class="gold"> {{ .subtitle }}</span>
+      <h1 class="f-headline-l f1 fw9 lh-solid mb3 hero-fade-up delay-200">
+        {{ $.Title }}<br /><span class="gold">{{ $.Params.subtitle }}</span>
       </h1>
-      <p class="f4 f3-l lh-copy mw6 center mb4 white-90">
+      <p class="f4 f3-l lh-copy mw6 center mb4 white-90 hero-fade-up delay-300">
         {{ $.Description }}
       </p>
-      <div class="flex flex-column flex-row-ns items-center justify-center">
-        <a href="{{ .primary_cta_href }}" class="link dib ph4 pv3 br3 bg-white dark-red fw6 mh2">
+      <div class="flex flex-column flex-row-ns items-center justify-center gap-3 hero-fade-up delay-400">
+        <a href="{{ .primary_cta_href }}" class="link dib ph4 pv3 br3 bg-white hero-lift" style="color: #1e3a8a;">
           {{ .primary_cta_text }}
         </a>
-        <a href="{{ .secondary_cta_href }}" class="link dib ph4 pv3 br3 ba b--white white fw6 mh2">
+        <a href="{{ .secondary_cta_href }}" class="link dib ph4 pv3 br3 ba b--white white fw6 hero-lift">
           {{ .secondary_cta_text }}
         </a>
       </div>
     </div>
   </section>
   {{ end }}
+  
+  
+  
+
+<!-- About Section -->
+<section id="about" class="pv5 ph4 ph5-l">
+  <div class="mw8 center">
+    <div class="tc mb5">
+      <h2 class="f2 f1-l fw9 lh-title mb3 dark-gray">O souboru</h2>
+      <p class="f4 lh-copy measure-wide center gray">
+        Soubor Podjavořičan byl založen v dubnu r. 1989. Ve svých řadách sdružuje mladé lidi se zájmem o folklór a zvyky z oblasti Horácka, především z Telče a okolí.
+      </p>
+    </div>
+    <div class="flex flex-wrap nl3 nr3">
+      <!-- Community -->
+      <div class="w-100 w-third-l pa3">
+        <div class="tc">
+          <div class="br-100 h3 w3 center bg-light-blue flex items-center justify-center mb3">
+            {{ partial "icon/users.html" (dict "class" "blue" "size" "32") }}
+          </div>
+          <h3 class="f4 fw7 mb2 dark-gray">Historie</h3>
+          <p class="f5 lh-copy gray">
+            Historie 
+          </p>
+        </div>
+      </div>
+      
+      <!-- Tradition -->
+      <div class="w-100 w-third-l pa3">
+        <div class="tc">
+          <div class="br-100 h3 w3 center bg-light-red flex items-center justify-center mb3">
+            {{- partial "icon/music.svg" (dict "class" "red" "size" "32") -}}
+          </div>
+          <h3 class="f4 fw7 mb2 dark-gray">Tradition</h3>
+          <p class="f5 lh-copy gray">
+            Preserving authentic folk music and dance for future generations
+          </p>
+        </div>
+      </div>
+      
+      <!-- Excellence -->
+      <div class="w-100 w-third-l pa3">
+        <div class="tc">
+          <div class="br-100 h3 w3 center bg-light-yellow flex items-center justify-center mb3">
+            {{- partial "icon/award.svg" (dict "class" "gold" "size" "32") -}}
+          </div>
+          <h3 class="f4 fw7 mb2 dark-gray">Tanecni pasma</h3>
+          <p class="f5 lh-copy gray">
+            Committed to the highest standards in performance and education
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  <section id="events" class="pv5 ph4 ph5-l bg-white">
+    <div class="mw8 center">
+      <div class="flex items-center justify-between mb4">
+        <div>
+          <h2 class="f2 f1-l fw9 lh-title mb2 dark-gray">Nadcházející vystoupení</h2>
+        </div>
+        <a href="/events/" class="f5 link blue dim fw6 flex items-center">
+          Zobrazit vše...
+        </a>
+      </div>
+      <div class="flex flex-wrap nl3 nr3">
+        {{ partial "event-teaser.html" . }}
+      </div>
+    </div>
+  </section>
+
+
+
+
  <!-- Contact (static, or use .Params.contact) -->
   {{ with .Params.contact }}
  <section id="contact" class="pv5 ph4 ph5-l">
@@ -48,7 +175,7 @@
       <div class="tc mb5">
         <h2 class="f2 f1-l fw9 lh-title mb3 dark-gray">Kontakt</h2>
         <p class="f4 lh-copy measure center gray">
-          Have questions or want to join our group? We would love to hear from you.
+          "Máte otázky? Ozvěte se!"
         </p>
       </div>
       <div class="flex flex-wrap nl3 nr3 mb4">
@@ -62,7 +189,7 @@
         </div>
         <div class="w-100 w-third-l pa3">
           <div class="tc pa4 ba b--black-10 br3 bg-white">
-            <h3 class="f5 fw7 mb2 dark-gray">Phone</h3>
+            <h3 class="f5 fw7 mb2 dark-gray">Mobil</h3>
             <a href="tel:{{ .phone }}" class="link blue dim">
               {{ .phone | safeHTML }}
             </a>
@@ -78,4 +205,7 @@
     </div>
   </section>
   {{ end }}
+
+</div>
+
 {{ end }}
