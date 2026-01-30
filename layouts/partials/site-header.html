@@ -1,14 +1,19 @@
 
 
 
-<nav class="bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
+<nav id="site-header" class="site-header bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
     <div class="pa3 ph4-l flex items-center justify-between">
       <h1 class="f4 fw7 ma0 dark-gray">
         <a href="{{ "/" | relURL }}" class="link dark-gray dim">
           {{ .Site.Title }}
         </a>
       </h1>
-      <div class="flex items-center">
+      <button id="site-nav-toggle" class="site-nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div id="site-nav" class="site-nav flex items-center">
         {{ range .Site.Menus.main }}
           <a href="{{  .URL | relURL }}" class="link dark-gray dim f6 mh2">
             {{ .Name }}
@@ -17,3 +22,119 @@
       </div>
     </div>
   </nav>
+
+  <style>
+    .site-header {
+      transition: transform 220ms ease;
+      will-change: transform;
+    }
+    .site-header.is-hidden {
+      transform: translateY(-100%);
+    }
+    .site-nav-toggle {
+      display: none;
+      position: relative;
+      width: 38px;
+      height: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+    .site-nav-toggle span {
+      position: absolute;
+      left: 7px;
+      right: 7px;
+      height: 2px;
+      background: #333;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+    .site-nav-toggle span:nth-child(1) { top: 9px; }
+    .site-nav-toggle span:nth-child(2) { top: 15px; }
+    .site-nav-toggle span:nth-child(3) { top: 21px; }
+    .site-nav.is-open {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .site-nav-toggle { display: block; }
+      .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding: 0.75rem 1rem 1rem;
+      }
+      .site-nav a {
+        display: block;
+        margin: 0.25rem 0;
+      }
+      .site-header.is-hidden .site-nav {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var header = document.getElementById("site-header");
+      if (!header) return;
+
+      var nav = document.getElementById("site-nav");
+      var toggle = document.getElementById("site-nav-toggle");
+      var lastScrollY = window.pageYOffset || 0;
+      var ticking = false;
+      var scrollStopTimeout = null;
+      var isMenuOpen = false;
+
+      function setMenuOpen(open) {
+        if (!nav || !toggle) return;
+        isMenuOpen = open;
+        nav.classList.toggle("is-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      function onScroll() {
+        var currentY = window.pageYOffset || 0;
+        var delta = currentY - lastScrollY;
+
+        if (currentY <= 10) {
+          header.classList.remove("is-hidden");
+        } else if (delta > 0 && !isMenuOpen) {
+          header.classList.add("is-hidden");
+        }
+
+        lastScrollY = currentY;
+        ticking = false;
+      }
+
+      function onScrollStop() {
+        header.classList.remove("is-hidden");
+      }
+
+      if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+          setMenuOpen(!isMenuOpen);
+        });
+        nav.addEventListener("click", function (event) {
+          if (event.target && event.target.tagName === "A") {
+            setMenuOpen(false);
+          }
+        });
+      }
+
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+
+        if (scrollStopTimeout) {
+          window.clearTimeout(scrollStopTimeout);
+        }
+        scrollStopTimeout = window.setTimeout(onScrollStop, 180);
+      }, { passive: true });
+    })();
+  </script>

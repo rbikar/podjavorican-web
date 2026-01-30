@@ -2,9 +2,9 @@
 title = "Podjavořičan"
 subtitle = "Telč"
 description = "Horácký folklorní soubor"
-featured_image = "/img/hero-folklore.jpg"        # hero background []
+featured_image = "/img/home.JPG"        # hero background []
 featured_image_class = "cover bg-center"         # Tachyons classes []
-#cover_dimming_class = "bg-black-60"             # optional []
+cover_dimming_class = "bg-black-60"             # optional []
 omit_header_text = true
 [params.hero]
   badge = "Více než 30 let udržujeme tradici na horácku."
