@@ -1,7 +1,7 @@
 
 
 
-<nav class="bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
+<nav id="site-header" class="site-header bg-white bb b--black-10 fixed w-100 top-0 left-0 z-999">
     <div class="pa3 ph4-l flex items-center justify-between">
       <h1 class="f4 fw7 ma0 dark-gray">
         <a href="{{ "/" | relURL }}" class="link dark-gray dim">
@@ -17,3 +17,54 @@
       </div>
     </div>
   </nav>
+
+  <style>
+    .site-header {
+      transition: transform 220ms ease;
+      will-change: transform;
+    }
+    .site-header.is-hidden {
+      transform: translateY(-100%);
+    }
+  </style>
+
+  <script>
+    (function () {
+      var header = document.getElementById("site-header");
+      if (!header) return;
+
+      var lastScrollY = window.pageYOffset || 0;
+      var ticking = false;
+      var scrollStopTimeout = null;
+
+      function onScroll() {
+        var currentY = window.pageYOffset || 0;
+        var delta = currentY - lastScrollY;
+
+        if (currentY <= 10) {
+          header.classList.remove("is-hidden");
+        } else if (delta > 0) {
+          header.classList.add("is-hidden");
+        }
+
+        lastScrollY = currentY;
+        ticking = false;
+      }
+
+      function onScrollStop() {
+        header.classList.remove("is-hidden");
+      }
+
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+
+        if (scrollStopTimeout) {
+          window.clearTimeout(scrollStopTimeout);
+        }
+        scrollStopTimeout = window.setTimeout(onScrollStop, 180);
+      }, { passive: true });
+    })();
+  </script>
