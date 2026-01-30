@@ -3,13 +3,21 @@
 <div class="min-vh-100 bg-near-white">
 
   {{ with .Params.hero }}
+  {{ $heroImage := $.Params.featured_image }}
   <section class="hero-section min-vh-100 flex items-center justify-center relative overflow-hidden" 
-           id="top" 
-           style="
-             background: linear-gradient(-45deg, #091a4b, #ff2549, #14b8a6);
-             background-size: 400% 400%;
-             animation: heroGradient 18s ease infinite;
-           ">
+          id="top" 
+          style="
+            {{ if $heroImage }}
+              background-image: url('{{ $heroImage | relURL }}');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+            {{ else }}
+              background: linear-gradient(-45deg, #091a4b, #ff2549, #14b8a6);
+              background-size: 400% 400%;
+              animation: heroGradient 18s ease infinite;
+            {{ end }}
+          ">
   
     <style>
       /* 3-COLOR SLOWER GRADIENT */
@@ -18,6 +26,15 @@
         33% { background-position: 100% 0%; }
         66% { background-position: 0% 100%; }
         100% { background-position: 0% 50%; }
+      }
+
+      .hero-gradient-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(-45deg, rgba(9,26,75,0.35), rgba(255,37,73,0.3), rgba(20,184,166,0.3));
+        background-size: 400% 400%;
+        animation: heroGradient 18s ease infinite;
+        z-index: 0;
       }
       
       /* SINGLE BIG ORB (left) */
@@ -40,7 +57,7 @@
         border-radius: 9999px; 
         filter: blur(2rem) brightness(1.2); 
         animation: bigOrbFloat **20s** ease-in-out infinite;  /* ← SLOWER */
-        z-index: 0; 
+        z-index: 1; 
       }
       
       /* Content animations unchanged */
@@ -55,8 +72,8 @@
       .hero-lift:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
     </style>
   
-    <!-- Dim overlay -->
-    <div class="absolute inset-0 bg-black-40"></div>
+    <!-- Gradient overlay (animated, separate from image) -->
+    <div class="hero-gradient-overlay"></div>
     
     <!-- SINGLE BIG TURQUOISE ORB (left) -->
     <div class="hero-big-orb"></div>
