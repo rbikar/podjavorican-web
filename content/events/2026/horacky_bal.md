@@ -14,4 +14,4 @@ facebook = "https://facebook.com/events/s/xl-horacky-bal/888525990791163/"
 
 XL. Horácký bál se uskuteční v pátek **6. února od 20 hodin v Kulturním domě v Krahulčí**.
 
-K tanci a poslechu zahraje ověřený tandem kapely LeGranda a Cimbálová muziky Rathan.
+K tanci a poslechu zahraje ověřený tandem kapely LeGranda a Cimbálové muziky Rathan.
