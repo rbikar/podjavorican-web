@@ -16,7 +16,11 @@ theme = 'ananke'
  #   name = "Aktuality"
  #   url  = "#news"
  #   weight = 10
-
+  [[menu.main]]
+    name = "Jarmark"
+    url  = "#jarmark"
+    weight = 10
+    
   [[menu.main]]
     name = "O souboru"
     url  = "#about"
