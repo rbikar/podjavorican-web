@@ -8,7 +8,7 @@ time_end = ""
 location = "Telč"
 address = ""
 category = "Festival"
-image = ""
+image = "events/2026/majovky.png"
 link = ""
 link_type = ""
 +++
