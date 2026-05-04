@@ -17,8 +17,8 @@ theme = 'ananke'
  #   url  = "#news"
  #   weight = 10
   [[menu.main]]
-    name = "Jarmark"
-    url  = "#jarmark"
+    name = "Telčský jarmark 2026"
+    url  = "https://jarmark.podjavorican.cz/"
     weight = 10
     
   [[menu.main]]
